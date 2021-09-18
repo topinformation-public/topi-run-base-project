@@ -1,0 +1,223 @@
+<?xml version="1.0"?>
+<ruleset name="TopiRules" xmlns="http://pmd.sourceforge.net/ruleset/2.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
+
+    <description>Topi Rules</description>
+
+    <rule ref="category/apex/design.xml/CyclomaticComplexity">
+        <priority>1</priority>
+    </rule>
+
+    <rule ref="category/apex/design.xml/CognitiveComplexity">
+        <priority>1</priority>
+    </rule>
+
+    <rule ref="category/apex/design.xml/AvoidDeeplyNestedIfStmts">
+        <priority>1</priority>
+    </rule>
+
+    <rule ref="category/apex/design.xml/NcssMethodCount">
+        <priority>1</priority>
+    </rule>
+
+    <rule ref="category/apex/design.xml/NcssConstructorCount">
+        <priority>1</priority>
+    </rule>
+
+    <rule ref="category/apex/design.xml/NcssTypeCount">
+        <priority>1</priority>
+    </rule>
+
+    <rule ref="category/apex/design.xml/ExcessiveClassLength">
+        <priority>1</priority>
+        <properties>
+            <property name="minimum" value="400.0" />
+        </properties>
+    </rule>
+
+    <rule ref="category/apex/codestyle.xml/FieldDeclarationsShouldBeAtStart">
+        <priority>3</priority>
+    </rule>
+
+    <rule ref="category/apex/codestyle.xml/FieldNamingConventions">
+        <priority>3</priority>
+        <properties>
+            <property name="enumConstantPattern" value="[A-Z][A-Z0-9_]*" />
+            <property name="constantPattern" value="[A-Z][A-Z0-9_]*" />
+            <property name="finalPattern" value="[A-Z][A-Z0-9_]*" />
+            <property name="staticPattern" value="[a-z][a-zA-Z0-9_]*" />
+        </properties>
+    </rule>
+
+    <rule ref="category/apex/codestyle.xml/LocalVariableNamingConventions">
+        <priority>3</priority>
+    </rule>
+    <rule ref="category/apex/codestyle.xml/MethodNamingConventions">
+        <priority>3</priority>
+    </rule>
+    <rule ref="category/apex/codestyle.xml/PropertyNamingConventions">
+        <priority>3</priority>
+    </rule>
+
+    <rule ref="category/apex/bestpractices.xml/ApexUnitTestClassShouldHaveAsserts">
+        <priority>2</priority>
+    </rule>
+
+    <rule ref="category/apex/bestpractices.xml/ApexUnitTestMethodShouldHaveIsTestAnnotation">
+        <priority>2</priority>
+    </rule>
+
+    <rule ref="category/apex/bestpractices.xml/ApexUnitTestShouldNotUseSeeAllDataTrue">
+        <priority>2</priority>
+    </rule>
+
+    <rule ref="category/apex/performance.xml/OperationWithLimitsInLoop">
+        <priority>2</priority>
+    </rule>
+
+    <rule ref="category/apex/bestpractices.xml/AvoidLogicInTrigger">
+        <priority>2</priority>
+    </rule>
+
+    <rule ref="category/apex/bestpractices.xml">
+        <exclude name="ApexAssertionsShouldIncludeMessage" />
+        <exclude name="DebugsShouldUseLoggingLevel" />
+    </rule>
+
+    <rule ref="category/apex/errorprone.xml">
+        <exclude name="EmptyStatementBlock" />
+    </rule>
+
+    <!-- Using whole set of rules excluding some -->
+    <rule ref="category/apex/design.xml">
+        <exclude name="StdCyclomaticComplexity" />
+        <exclude name="ExcessivePublicCount" />
+        <exclude name="TooManyFields" />
+    </rule>
+
+    <rule ref="category/apex/codestyle.xml">
+        <exclude name="VariableNamingConventions" />
+        <exclude name="IfStmtsMustUseBraces" />
+        <exclude name="IfElseStmtsMustUseBraces" />
+        <exclude name="WhileLoopsMustUseBraces" />
+        <exclude name="ForLoopsMustUseBraces" />
+    </rule>
+
+    <rule ref="category/apex/performance.xml">
+        <exclude name="AvoidDmlStatementsInLoops" />
+        <exclude name="AvoidSoslInLoops" />
+        <exclude name="AvoidSoqlInLoops" />
+    </rule>
+
+    <rule ref="category/apex/security.xml">
+        <exclude name="ApexCRUDViolation" />
+        <exclude name="ApexCSRF" />
+        <exclude name="ApexInsecureEndpoint" />
+        <exclude name="ApexSharingViolations" />
+        <exclude name="ApexSuggestUsingNamedCred" />
+    </rule>
+
+    <rule name="ControlStatementBraces" language="apex" since="6.2.0" message="This statement should have braces" class="net.sourceforge.pmd.lang.rule.XPathRule" externalInfoUrl="${pmd.website.baseurl}/pmd_rules_java_codestyle.html#controlstatementbraces">
+        <description>
+            Enforce a policy for braces on control statements. It is recommended to use braces on 'if ... else'
+            statements and loop statements, even if they are optional. This usually makes the code clearer, and
+            helps prepare the future when you need to add another statement. That said, this rule lets you control
+            which statements are required to have braces via properties.
+            --- Imported from PMD Java Standard Rule ---
+            From 6.2.0 on, this rule supersedes WhileLoopMustUseBraces, ForLoopMustUseBraces, IfStmtMustUseBraces,
+            and IfElseStmtMustUseBraces.
+        </description>
+        <priority>3</priority>
+        <properties>
+            <property name="checkIfElseStmt" type="Boolean" value="true" description="Require that 'if ... else' statements use braces" />
+            <property name="checkSingleIfStmt" type="Boolean" value="true" description="Require that 'if' statements with a single branch use braces" />
+            <property name="checkWhileStmt" type="Boolean" value="true" description="Require that 'while' loops use braces" />
+            <property name="checkForStmt" type="Boolean" value="true" description="Require that 'for' loops should use braces" />
+            <property name="checkDoWhileStmt" type="Boolean" value="true" description="Require that 'do ... while' loops use braces" />
+            <property name="checkCaseStmt" type="Boolean" value="false" description="Require that cases of a switch have braces" />
+
+            <property name="allowEmptyLoop" type="Boolean" value="false" description="Allow loops with an empty statement, e.g. 'while(true);'" />
+
+            <property name="version" value="2.0" />
+            <property name="xpath">
+                <value>
+                    <![CDATA[
+          //WhileStatement[$checkWhileStmt and not(Statement/Block) and not($allowEmptyLoop and Statement/EmptyStatement)]
+          |
+          //ForStatement[$checkForStmt and not(Statement/Block) and not($allowEmptyLoop and Statement/EmptyStatement)]
+          |
+          //DoStatement[$checkDoWhileStmt and not(Statement/Block) and not($allowEmptyLoop and Statement/EmptyStatement)]
+          |
+          (: The violation is reported on the sub statement -- not the if statement :)
+          //Statement[$checkIfElseStmt and parent::IfStatement and not(child::Block or child::IfStatement)
+                      (: Whitelists single if statements :)
+                      and ($checkSingleIfStmt
+                           (: Inside this not(...) is the definition of a "single if statement" :)
+                           or not(count(../Statement) = 1 (: No else stmt :)
+                                  (: Not the last branch of an 'if ... else if' chain :)
+                                  and not(parent::IfStatement[parent::Statement[parent::IfStatement]])))]
+          |
+          (: Reports case labels if one of their subordinate statements is not braced :)
+          //SwitchLabel[$checkCaseStmt]
+                       [count(following-sibling::BlockStatement except following-sibling::SwitchLabel[1]/following-sibling::BlockStatement) > 1
+                        or (some $stmt (: in only the block statements until the next label :)
+                            in following-sibling::BlockStatement except following-sibling::SwitchLabel[1]/following-sibling::BlockStatement
+                            satisfies not($stmt/Statement/Block))]
+          ]]>
+                </value>
+            </property>
+        </properties>
+        <example>
+            <![CDATA[
+
+                if (true) x++; allowed
+
+                if (true)
+
+                while (true)    // not recommended
+                    x++;
+                
+                while (true) {  // preferred approach
+                    x++;
+                }
+            ]]>
+        </example>
+    </rule>
+
+
+    <rule name="EmptyStatementBlock" language="apex" since="6.0.0" message="Avoid empty block statements." class="net.sourceforge.pmd.lang.apex.rule.ApexXPathRule" externalInfoUrl="${pmd.website.baseurl}/pmd_rules_apex_errorprone.html#emptystatementblock">
+        <description>
+                Empty block statements serve no purpose and should be removed.
+        </description>
+        <priority>3</priority>
+        <properties>
+            <property name="version" value="2.0" />
+            <property name="xpath">
+                <value>
+                    <![CDATA[
+                    //Method/ModifierNode[@Abstract!= true() 
+                        and ../ModifierNode[ @Override != true()]
+                        and ../@Constructor != true()  
+                        and ../BlockStatement[count(*) = 0]]
+                    | //Method/BlockStatement//BlockStatement[count(*) = 0 and @Location != parent::*/@Location]
+                    ]]>
+                </value>
+            </property>
+        </properties>
+        <example>
+            <![CDATA[
+            public class Foo {
+                public Foo () { // default constructor allowed
+                }
+
+                private Integer _bar;
+                public void setBar(Integer bar) {
+                    // empty 
+                }
+
+            }
+            ]]>
+        </example>
+    </rule>
+
+
+</ruleset>
