@@ -14,7 +14,7 @@ Para enviar as classes do projeto para sua Org Salesforce vc pode executar o com
 
 sfdx force:auth:web:login -a my-sandbox --instanceurl https://login.salesforce.com
 
-sfdx force:mdapi:deploy -d ./src --verbose -u my-sandbox
+sfdx force:source:deploy -p ./force-app/main/default -u my-sandbox --wait=90
 
 ```
 **PS:** `my-sandbox` é o apelido que vc quer dar para sua Org Salesforce
