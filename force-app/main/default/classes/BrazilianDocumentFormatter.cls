@@ -9,12 +9,16 @@ public class BrazilianDocumentFormatter {
 
     public String formatCPF(String plainText) {
 
+        if ( String.isEmpty(plainText)) return null;
+
         if (plainText.length() != 11) throw new InvalidInputException('CPF should have length 11');
 
         return plainText.substring(0, 3) + '.' + plainText.substring(3, 6) + '.' + plainText.substring(6, 9) + '-' + plainText.substring(9, 11);
     }
 
     public String formatCNPJ(String plainText) {
+
+        if ( String.isEmpty(plainText)) return null;
 
         if (plainText.length() != 14) throw new InvalidInputException('CNPJ should have length 14');
 

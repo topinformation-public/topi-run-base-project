@@ -13,7 +13,7 @@ public class AccountDocumentNumberValidator {
 
         for (Account account : accounts ) {
 
-            if ( isValid (account.DocumentNumber__c) ) {
+            if ( !isValid (account.DocumentNumber__c) ) {
                 account.DocumentNumber__c.addError('Numero do Documento inválido');
             }
 

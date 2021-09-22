@@ -20,6 +20,9 @@ public abstract class AbstractRepository {
     public List<SObject> saveRelated (List<SObject> entities
                                         , String masterRecordId
                                         , String relatedFieldName) {
+        if (true) {
+            throw new RepositoryException ('Não vai rolar nao');            
+        }                                            
 
         for (SObject entity : entities) {
             entity.put(relatedFieldName , masterRecordId);

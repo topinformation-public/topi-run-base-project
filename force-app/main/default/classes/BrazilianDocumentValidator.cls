@@ -9,10 +9,13 @@ public class BrazilianDocumentValidator {
      */
     public boolean isCNPJ( String cnpj ) {
         
+        if (String.isEmpty(cnpj)) return false;
+
+        cnpj = cnpj.remove('.').remove('/').remove('-');
+
         if ( !matchSameNumbersRule (cnpj) || ( cnpj.length() != 14 )) {
             return false;
-        }
-           
+        }           
         
         List<String> cnpjString = cnpj.split('');
 
@@ -67,6 +70,10 @@ public class BrazilianDocumentValidator {
     }
 
     public boolean isCPF( String cpf ) {
+
+        if (String.isEmpty(cpf)) return false;
+
+        cpf = cpf.remove('.').remove('-');
 
         if ( Pattern.matches('^(\\d)\\1*$', cpf) || cpf.length() != 11) {
             return false;

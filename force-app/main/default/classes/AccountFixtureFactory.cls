@@ -6,7 +6,7 @@ public class AccountFixtureFactory {
 
     public static Account newAccount ( String name, String billingCountry ) {
         return new Account (Name = name
-                        , DocumentNumber__c = '12312312878'
+                        , DocumentNumber__c = '20490867000180'
                         , BillingCity = 'Sao Jose dos Campos'
                         , BillingCountry =  billingCountry);
     }
