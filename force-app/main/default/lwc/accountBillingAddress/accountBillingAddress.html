@@ -27,15 +27,11 @@
                 <div class="slds-col slds-var-m-bottom_small slds-small-size_1-of-1 
                         slds-medium-size_1-of-2 slds-large-size_1-of-3">
 
-                    <lightning-input type="text" 
-                        label="Cep" 
-                        required
-                        max-length="11"
-                        pattern="00.000-00"
-                        message-when-pattern-mismatch="Favor informar de acordo com o padrão"
-                        message-when-value-missing="Favor informar o Cep de Cobrança"
-                        placeholder="00.000-00">
-                    </lightning-input>
+                    <c-zip-code-address
+                        zip-code={zipCode}
+                        label="Cep"
+                        required=true>
+                    </c-zip-code-address>
 
                 </div>
                 <!--Street-->
@@ -43,28 +39,41 @@
                     slds-small-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_2-of-3">
                     
                     <lightning-input type="text" 
-                        label="Endereço" 
+                        label="Endereço"
+                        class="changeable" 
                         required
                         max-length="255"
+                        name="street"
+                        onblur={handleChange}
+
                         message-when-value-missing="Favor informar o Endereço de Cobrança">
                     </lightning-input>
 
                 </div>
                 <div class="slds-col slds-var-m-bottom_small slds-small-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-3">
                     <lightning-input type="text" 
-                        label="Endereço" 
+                        label="Número"
+                        class="changeable"
+                        name="streetNumber"
+                        onblur={handleChange}
                         max-length="20">
                     </lightning-input>
                 </div>
                 <div class="slds-col slds-var-p-left_small slds-var-m-bottom_small slds-small-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_2-of-3">
                     <lightning-input type="text" 
-                        label="Complemento" 
+                        label="Complemento"
+                        class="changeable"
+                        name="aditionalInfo"
+                        onblur={handleChange}
                         max-length="255">
                     </lightning-input>
                 </div>
                 <div class="slds-col slds-var-m-bottom_small slds-small-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-3">
                     <lightning-combobox 
                         label="Estado"
+                        class="changeable"
+                        name="state"
+                        onchange={handleChange}
                         options={states}
                         required
                         >
@@ -75,10 +84,22 @@
                 <div class="slds-col slds-var-p-left_small slds-var-m-bottom_small slds-small-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_2-of-3">
                     <lightning-combobox 
                         label="Cidade"
+                        class="changeable"
+                        onchange={handleChange}
                         required
                     >
 
                     </lightning-combobox>
+                </div>
+
+                <div class="slds-col slds-var-p-left_small slds-var-m-bottom_small slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1">
+                    <lightning-button 
+                        name="Save"
+                        label="Save"
+                        class="changeable"
+                        onclick={handleSave}
+                        >
+                    </lightning-button>
                 </div>
                 
             </div>

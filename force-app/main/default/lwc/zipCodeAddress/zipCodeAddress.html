@@ -1,0 +1,15 @@
+<template>
+
+    <lightning-input type="text" 
+        label={label} 
+        required={required}
+        value={zipCode}
+        max-length="9"
+        pattern="[0-9]{5}-[0-9]{3}"
+        message-when-pattern-mismatch="Favor informar de acordo com o padrão"
+        message-when-value-missing="Favor informar o Cep de Cobrança"
+        onblur={handleChange}
+        placeholder="00.000-000">
+    </lightning-input>
+    
+</template>
