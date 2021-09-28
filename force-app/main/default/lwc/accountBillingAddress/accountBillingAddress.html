@@ -30,7 +30,9 @@
                     <c-zip-code-address
                         zip-code={zipCode}
                         label="Cep"
-                        required=true>
+                        required=true
+                        onaddressfound={handleAddressFound}
+                        >
                     </c-zip-code-address>
 
                 </div>
@@ -44,6 +46,7 @@
                         required
                         max-length="255"
                         name="street"
+                        value={street}
                         onblur={handleChange}
 
                         message-when-value-missing="Favor informar o Endereço de Cobrança">
@@ -55,6 +58,7 @@
                         label="Número"
                         class="changeable"
                         name="streetNumber"
+                        value={streetNumber}
                         onblur={handleChange}
                         max-length="20">
                     </lightning-input>
@@ -64,6 +68,7 @@
                         label="Complemento"
                         class="changeable"
                         name="aditionalInfo"
+                        value={streetAditionalInfo}
                         onblur={handleChange}
                         max-length="255">
                     </lightning-input>
@@ -73,23 +78,28 @@
                         label="Estado"
                         class="changeable"
                         name="state"
+                        value={state}
                         onchange={handleChange}
                         options={states}
                         required
                         >
 
                     </lightning-combobox>
+
+                    <c-reactive-test
+                        state={state}
+                    ></c-reactive-test>
+
                 </div>
                   
                 <div class="slds-col slds-var-p-left_small slds-var-m-bottom_small slds-small-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_2-of-3">
-                    <lightning-combobox 
-                        label="Cidade"
-                        class="changeable"
-                        onchange={handleChange}
-                        required
-                    >
-
-                    </lightning-combobox>
+                    
+                    <c-city
+                        city-state={state}
+                        city-code={city}
+                        onselected={handleSelectedCity}
+                    ></c-city>
+                    
                 </div>
 
                 <div class="slds-col slds-var-p-left_small slds-var-m-bottom_small slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1">

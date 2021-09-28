@@ -17,6 +17,7 @@ export default class ZipCodeAddress
 
     set zipCode (zipCode) {
         this._zipCode = zipCode;
+        this.findAddress();
     }
 
 
@@ -54,7 +55,7 @@ export default class ZipCodeAddress
         
         const component = this.template.querySelector('lightning-input');
 
-        if ( component.checkValidity() ) {
+        if ( !component.checkValidity() ) {
             component.reportValidity();
             return false;
         }
@@ -63,19 +64,27 @@ export default class ZipCodeAddress
     }
 
     handleChange (event) {        
+
         this.zipCode = event.target.value;
 
-        this.findAddress ();
+        if (this.isValid()) this.findAddress ();
     }
 
     findAddress () {
         
         findAddressByZipCode({zipCode : this.zipCode}).then (result => {
             this.address = result;
+            this.publishAddressFoundEvent();
         }).catch (error => {
             console.log(error);
         });
 
+    }
+
+
+    publishAddressFoundEvent () {
+        const customEvent = new CustomEvent ('addressfound', {detail: this.address});
+        this.dispatchEvent(customEvent);
     }
 
 }

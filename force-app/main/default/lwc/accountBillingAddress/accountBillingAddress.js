@@ -1,6 +1,7 @@
-import { LightningElement } from 'lwc';
-
-const STATES = [ {label:'MG',value:'MG'} ,  {label:'RJ',value:'RJ'}];
+import { LightningElement, track, wire } from 'lwc';
+import { getPicklistValues } from 'lightning/uiObjectInfoApi';
+import  BILLING_STATE  from '@salesforce/schema/Account.BillingState__c';
+const STATES = [ {label:'MG',value:'MG'} ,  {label:'RJ',value:'RJ'}, {label:'SP',value:'SP'}];
 
 export default class AccountBillingAddress extends LightningElement {
 
@@ -9,7 +10,9 @@ export default class AccountBillingAddress extends LightningElement {
     streetNumber;
     streetAditionalInfo;
     city;
-    staty;
+
+    @track
+    state;
 
     constructor() {
         super();
@@ -18,7 +21,7 @@ export default class AccountBillingAddress extends LightningElement {
 
     connectedCallback () {
         console.log ('AccountBillingAddress Connected ....');
-        this.zipCode = '12.220-000';
+        this.zipCode = '12220-000';
     }
 
     renderedCallback () {
@@ -51,5 +54,24 @@ export default class AccountBillingAddress extends LightningElement {
         this[event.target.name] = event.target.value;     
     }
 
+    handleAddressFound (event) {
+        console.log ( JSON.stringify (event.detail) );
+        this.zipCode = event.detail.zipCode;
+        this.street = event.detail.street;
+        this.streetAditionalInfo = event.detail.streetAditionalInfo;
+        this.city = event.detail.city;
+        this.state = event.detail.state;
+
+    }
+
+    @wire(getPicklistValues, { recordTypeId: '012000000000000AAA', fieldApiName: BILLING_STATE }) 
+    getStates ({error, data}) {
+        console.log (data);
+        console.log(error);
+    }
+
+    handleSelectedCity (event) {
+        this.city = event.detail.cityCode;
+    }
 
 }
